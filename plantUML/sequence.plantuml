@@ -1,0 +1,37 @@
+@startuml
+|Employer|
+start
+:Login;
+:Post Job;
+|System|
+:Notify Freelancers;
+|Freelancer|
+:Login;
+:Browse Jobs;
+:Select Job;
+:Submit Proposal;
+|Employer|
+:Review Proposals;
+:Select Freelancer;
+|System|
+:Notify Freelancer;
+|Freelancer|
+:Accept Job;
+:Work on Job;
+:Submit Work;
+|Employer|
+:Review Work;
+:Provide Feedback;
+:Initiate Payment;
+|System|
+:Verify Payment through Chapa;
+:Payment Confirmed;
+:Analyze Feedback Sentiment;
+:Update Freelancer Rating;
+|Admin|
+:Login;
+:View Stats;
+:Manage Users;
+:Manage Jobs;
+stop
+@enduml

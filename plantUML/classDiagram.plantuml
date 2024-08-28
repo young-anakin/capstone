@@ -1,0 +1,59 @@
+@startuml
+class User {
+  +String username
+  +String password
+  +Profile profile
+  +login()
+  +logout()
+}
+
+class Profile {
+  +String name
+  +String email
+  +List<Skill> skills
+  +updateProfile()
+}
+
+class Employer {
+  +postJob()
+  +reviewProposals()
+  +selectFreelancer()
+}
+
+class Freelancer {
+  +submitProposal()
+  +acceptJob()
+  +submitWork()
+}
+
+class Job {
+  +String title
+  +String description
+  +float budget
+  +List<Proposal> proposals
+  +List<Review> reviews
+}
+
+class Proposal {
+  +Freelancer freelancer
+  +String proposalText
+  +float bidAmount
+}
+
+class Review {
+  +Employer employer
+  +String reviewText
+  +int rating
+}
+
+class SentimentAnalysis {
+  +analyzeText(String text)
+}
+
+User "1" *-- "1" Profile
+Employer "1" *-- "many" Job
+Freelancer "1" *-- "many" Proposal
+Job "1" *-- "many" Proposal
+Job "1" *-- "many" Review
+Review "1" *-- "1" SentimentAnalysis
+@enduml

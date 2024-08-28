@@ -1,0 +1,79 @@
+@startuml
+package "Web Application" {
+  [User Interface] 
+}
+
+package "Application Server" {
+  [Job Management Service] 
+  [User Management Service]
+  [Feedback Service]
+  [Payment Service]
+}
+
+package "Database Server" {
+  [Relational Database]
+}
+
+package "External Services" {
+  [Chapa Payment Gateway]
+  [Sentiment Analysis API]
+}
+
+[User Interface] --> [Job Management Service] : "Post Job, Browse Jobs, Apply for Jobs"
+[User Interface] --> [User Management Service] : "Register, Login, Manage Profile"
+[User Interface] --> [Feedback Service] : "Submit Feedback, View Feedback"
+[User Interface] --> [Payment Service] : "Initiate Payment, View Payment Status"
+
+[Job Management Service] --> [Relational Database] : "CRUD Job Postings"
+[User Management Service] --> [Relational Database] : "CRUD User Accounts"
+[Feedback Service] --> [Relational Database] : "CRUD Feedback"
+[Payment Service] --> [Relational Database] : "CRUD Payment Records"
+
+[Payment Service] --> [Chapa Payment Gateway] : "Verify Payment"
+[Feedback Service] --> [Sentiment Analysis API] : "Analyze Feedback Sentiment"
+
+note right of [User Interface]
+This component represents the frontend user interface 
+for the Admin, Freelancer, and Employer. It includes 
+pages and forms for interacting with various services.
+end note
+
+note right of [Job Management Service]
+This service handles job postings, browsing jobs, 
+and applying for jobs. It interacts with the database 
+for CRUD operations on job postings.
+end note
+
+note right of [User Management Service]
+This service manages user accounts, including 
+registration, login, profile management, and 
+account settings.
+end note
+
+note right of [Feedback Service]
+This service handles the submission and retrieval 
+of feedback. It also interacts with the sentiment 
+analysis API to analyze feedback sentiment.
+end note
+
+note right of [Payment Service]
+This service processes payments, interacts with 
+the Chapa payment gateway for payment verification, 
+and manages payment records.
+end note
+
+note right of [Relational Database]
+The relational database stores all data related 
+to users, jobs, feedback, and payments.
+end note
+
+note right of [Chapa Payment Gateway]
+An external service used for verifying and 
+processing payments.
+end note
+
+note right of [Sentiment Analysis API]
+An external service used to analyze the sentiment 
+of feedback provided by employers.
+end note
+@enduml
